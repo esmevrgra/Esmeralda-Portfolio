@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esmeralda's Growing Garden of Code 🌸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-overlay">
+        <button id="start-button">Enter Esmeralda's Garden</button>
+    </div>
+
+    <audio id="enterSound" src="enter_key_sound.mp3" preload="auto"></audio> 
+    
+    <nav class="overlay-navigation">
+        <span class="logo">E. CODE</span>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume / CV</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-intro" id="hero">
+        <h1 class="hero-name" data-final-name="Hello I am Esmeralda!"></h1> 
+        <div class="animated-skills-container"></div>
+        <p class="hero-scroll-prompt">Scroll to explore my garden <span class="arrow-down">↓</span></p>
+    </section>
+
+    <main>
+        
+        <aside class="sidebar flower-bed">
+            <img src="placeholder_profile.jpg" alt="Esmeralda's Profile Picture" class="profile-photo">
+            <h3>Esmeralda</h3>
+            <p>CS Student | Web & Data Enthusiast</p>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com">Email Me</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            </div>
+        </aside>
+
+        <div class="content-area">
+
+            <section id="about" class="flower-bed">
+                <h2>About Me: The Roots of the Garden</h2>
+                <p>Hello! My name is Esmeralda, and I am a computer science student passionate about building beautiful and functional digital experiences. My journey begins at the College of Southern Idaho (2023-2025) and will continue at Boise State University (Aug 2025-Present).</p>
+                <p>I find joy in the logic of **C++** and the creative freedom of the **HTML/CSS/JavaScript** stack. I'm currently focused on growing my skills in full-stack development and exploring the world of data with **Python**.</p>
+                <p>I am a native **English** and **Spanish** speaker, and I am a beginner in **Korean**.</p>
+            </section>
+
+            <section id="skills" class="flower-bed">
+                <h2>Cultivated Skills & Tools</h2>
+                <ul class="skills-list">
+                    <li class="skill-tag">C++</li>
+                    <li class="skill-tag">HTML5</li>
+                    <li class="skill-tag">CSS3</li>
+                    <li class="skill-tag">JavaScript</li>
+                    <li class="skill-tag">Python</li>
+                    <li class="skill-tag">Git/GitHub</li>
+                    <li class="skill-tag">Responsive Design</li>
+                </ul>
+            </section>
+
+            <section id="projects" class="flower-bed">
+                <h2>Blooming Projects</h2>
+                <div class="projects-container">
+                    
+                    <article class="project-card">
+                        <h3>The Hydrangea Highlighter (Web)</h3>
+                        <p>A simple, responsive landing page built with HTML and CSS to practice advanced layout techniques (Flexbox/Grid). </p>
+                        <p class="tools-used">**Tools:** HTML, CSS, Responsive Design</p>
+                        <a href="#" target="_blank" class="project-link">View Demo</a>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>Python Petal Picker (App)</h3>
+                        <p>A command-line interface application written in Python to sort and filter data, demonstrating basic data structure knowledge.</p>
+                        <p class="tools-used">**Tools:** Python, Data Structures</p>
+                        <a href="#" target="_blank" class="project-link">GitHub Repo</a>
+                    </article>
+
+                    </div>
+            </section>
+            
+            <section id="resume" class="flower-bed">
+                <h2>Certificates & Résumé</h2>
+                
+                <div class="resume-content">
+                    <p>My full résumé and formal credentials are available for download:</p>
+                    <a href="path/to/your/resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a>
+
+                    <h3>Key Education</h3>
+                    <ul>
+                        <li>**Boise State University** (Aug 2025 - Present) - Computer Science (B.S. track)</li>
+                        <li>**College of Southern Idaho** (2023 - 2025) - Relevant coursework in C++ and Data Structures.</li>
+                    </ul>
+                    
+                    <h3>Certificates / Licenses</h3>
+                    <ul>
+                        <li>**FreeCodeCamp Responsive Web Design** (Completed 2024)</li>
+                        <li>**Coursera Introduction to Python** (Completed 2024)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="contact" class="flower-bed">
+                <h2>Let's Cultivate Ideas Together</h2>
+                <p>I'm always open to discussing new projects, internships, or just connecting about code. Feel free to reach out!</p>
+                <form action="submit_form_endpoint" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>Esmeralda's Garden of Code | Designed with HTML, CSS, and JavaScript.</p>
+        <p>&copy; 2024. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+/* ------------------------------------------- */
+/* PROFESSIONAL & COMPLEX CSS STYLES v6 - PINK & DARK MODE */
+/* ------------------------------------------- */
+
+/* --- 0. CSS VARIABLES (High Contrast Dark/Pink Theme) --- */
+:root {
+  /* Color Palette */
+  --color-primary-pink: #FF69B4;        
+  --color-accent-pink: #FFC0CB;         
+  --color-background-dark: #1A1A1A;     
+  --color-background-light: #2A2A2A;    
+  --color-text-dark: #F0F0F0;           
+  --color-text-dim: #A9A9A9;            
+  --color-code-bg: #40254A;             
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-code: 'Fira Code', monospace;
+
+  /* Spacing & Effects */
+  --spacing-large: 4rem; 
+  --spacing-medium: 2rem;
+  --border-radius: 12px;
+  --shadow-deep: 0 5px 15px rgba(255, 105, 180, 0.2); 
+  --nav-height: 70px;
+
+  /* Dynamic Background Colors (Black to Light Pink Gradient) */
+  --bg-color-1: #000000;  /* Pure Black (Start Color) */
+  --bg-color-2: #380024;  /* Deep Magenta */
+  --bg-color-3: #961660;  /* Mid Pink/Magenta */
+  --bg-color-4: #ba3384;  /* Light Pink (Target Color) */
+  --bg-color-5: #ea64b2;  /* End Color */
+}
+
+/* --- 1. GLOBAL RESET AND TYPOGRAPHY --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&family=Fira+Code:wght@400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color-1);
+  color: var(--color-text-dark);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  min-height: 100vh;
+  transition: background-color 0.8s ease-out;
+}
+
+a {
+  color: var(--color-primary-pink);
+  text-decoration: none;
+}
+
+/* --- START OVERLAY STYLING --- */
+#start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-dark); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  transition: opacity 0.5s ease-out;
+}
+
+#start-button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: var(--color-primary-pink);
+  color: var(--color-background-dark);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: var(--shadow-deep);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* --- 2. OVERLAY NAVIGATION (Dark/Fixed) --- */
+.overlay-navigation {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px var(--spacing-medium);
+  background-color: rgba(26, 26, 26, 0.95); /* Darker background for floating element */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  z-index: 2000; 
+  height: var(--nav-height);
+  opacity: 0; 
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.overlay-navigation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay-navigation .logo {
+  color: var(--color-primary-pink);
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.overlay-navigation ul {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
+.overlay-navigation a {
+  color: var(--color-text-dark);
+  font-weight: 400;
+  padding: 5px 10px;
+  position: relative;
+}
+
+.overlay-navigation a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-primary-pink);
+  transform: translateX(-50%);
+  transition: width 0.3s ease-out;
+}
+
+.overlay-navigation a:hover::after, .overlay-navigation a:focus::after {
+  width: 100%;
+}
+
+/* --- 3. HERO INTRO SECTION (Full-screen, centered) --- */
+.hero-intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; 
+  color: var(--color-text-dark);
+  /* Lighting effect: radial glow from the center */
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 105, 180, 0.1) 0%, rgba(26, 26, 26, 0) 70%), 
+                    linear-gradient(45deg, var(--bg-color-1), var(--color-background-dark));
+  background-size: 200% 200%, 100% 100%;
+  animation: backgroundPulse 10s ease-in-out infinite alternate;
+  transition: opacity 1s ease-out;
+
+}
+
+@keyframes backgroundPulse {
+  0% { background-position: 0% 0%, 0% 0%; }
+  100% { background-position: 100% 100%, 0% 0%; }
+}
+
+.hero-name {
+  font-family: var(--font-code); 
+  font-size: clamp(2em, 7vw, 4em);
+  color: var(--color-primary-pink); /* Code is pink */
+  position: relative; 
+  z-index: 100; 
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: rgba(26, 26, 26, 0.8); /* Dark background for readability */
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); /* Pink glow */
+  white-space: nowrap; 
+  overflow: hidden; 
+  border-right: 4px solid var(--color-text-dark); 
+  transition: all 0.2s ease-out; 
+  transform: translateY(0) scale(1);
+}
+
+/* --- TWO-STAGE GREETING CLASSES --- */
+/* Typing cursor for the code */
+.hero-name.typing-code {
+  font-family: var(--font-code);
+  border-right-color: var(--color-primary-pink);
+}
+@keyframes blinkCodeCursor {
+  50% { border-right-color: transparent; }
+}
+.hero-name.finished-typing-code {
+  animation: blinkCodeCursor 0.75s step-end infinite;
+}
+
+/* Animations for "Esmeralda" jumping in */
+.hero-name.name-reveal {
+  font-family: var(--font-heading); 
+  font-size: clamp(3em, 10vw, 6em); 
+  color: var(--color-accent-pink); 
+  animation: nameJumpIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; 
+  border-right-color: transparent; 
+  background-color: rgba(26, 26, 26, 0.95);
+  /* Add a large text shadow for "glow" effect */
+  text-shadow: 0 0 10px var(--color-primary-pink);
+}
+
+@keyframes nameJumpIn {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  60% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Typing cursor for the final name */
+.hero-name.finished-typing-name {
+  border-right-color: var(--color-primary-pink); 
+  animation: blinkNameCursor 0.75s step-end infinite;
+}
+@keyframes blinkNameCursor {
+  50% { border-right-color: transparent; }
+}
+
+
+.animated-skills-container {
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; 
+  z-index: 50; 
+}
+
+/* Individual skill tag within the animation */
+.animated-skill-tag {
+  position: absolute;
+  font-family: var(--font-code);
+  background-color: var(--color-code-bg);
+  color: var(--color-accent-pink);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  opacity: 0; 
+  transform: translate(-50%, -50%) scale(0.8);
+  white-space: nowrap;
+  border: 1px solid var(--color-primary-pink);
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease-out, left 0.8s ease-out, top 0.8s ease-out;
+}
+
+.hero-scroll-prompt {
+  position: absolute;
+  bottom: var(--spacing-medium);
+  font-size: 1.1em;
+  color: var(--color-accent-pink);
+  opacity: 0; 
+  animation: bounce 2s infinite, fadeIn 1s forwards 2s; 
+}
+
+/* --- 4. MAIN CONTENT LAYOUT (Single Column) --- */
+main {
+  max-width: 1000px; /* Max width for central content */
+  margin: 0 auto;
+  padding: var(--spacing-large) var(--spacing-medium);
+  padding-top: var(--nav-height); 
+}
+
+/* Full Width Section Styling (Minimalist Boxes) */
+.full-width-section {
+  padding: var(--spacing-large) 0;
+  margin-bottom: 0; /* Remove space between sections */
+  border-bottom: 1px solid var(--color-code-bg); /* Subtle separator */
+  opacity: 0;
+  pointer-events: none; /* Prevents interaction when hidden */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(20px); /* Small offset for a better reveal effect */
+}
+
+.full-width-section.active-scroll {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.terminal-box {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  color: var(--color-primary-pink);
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: var(--spacing-medium);
+  position: relative;
+  padding-bottom: 8px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 50px; 
+  height: 3px;
+  background-color: var(--color-accent-pink);
+}
+
+/* Profile Section Styling */
+#summary {
+  text-align: center;
+}
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-primary-pink);
+  margin-bottom: 10px;
+  filter: grayscale(50%); 
+}
+.contact-links a {
+  display: inline-block;
+  margin: 10px 15px;
+  color: var(--color-text-dim);
+  transition: color 0.3s;
+}
+.contact-links a:hover {
+  color: var(--color-primary-pink);
+}
+
+/* --- SKILLS & PROJECTS --- */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+}
+
+.skill-tag { 
+  background-color: var(--color-code-bg);
+  color: var(--color-accent-pink);
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: 600;
+  border: 1px solid var(--color-primary-pink);
+}
+
+.skill-tag:hover {
+  background-color: var(--color-primary-pink);
+  color: var(--color-background-dark);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-medium);
+}
+
+.project-card {
+  border: 1px solid var(--color-code-bg);
+  border-left: 5px solid var(--color-primary-pink); /* Highlight border */
+  border-radius: 5px;
+  padding: 20px;
+  background-color: var(--color-background-light);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 0 2px var(--color-primary-pink);
+  transform: translateY(-5px);
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-primary-pink);
+  color: var(--color-background-dark);
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+}
+
+.cta-button:hover {
+  background-color: var(--color-accent-pink);
+}
+
+/* --- CONTACT FORM --- */
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: var(--spacing-medium);
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--color-code-bg);
+  border-radius: 5px;
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-light);
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+  color: var(--color-text-dim);
+}
+
+.contact-form textarea {
+  grid-column: 1 / -1;
+  resize: vertical;
+}
+
+/* --- 5. FOOTER --- */
+footer {
+  text-align: center;
+  padding: 30px;
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dim);
+  font-size: 0.9em;
+}
+
+/* --- 6. Cursor Petal/Glow CSS --- */
+.cursor-petal {
+  position: fixed;
+  pointer-events: none; 
+  background-color: var(--color-primary-pink);
+  border-radius: 50%; 
+  z-index: 9999; 
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transform: translateY(0) rotate(0);
+  box-shadow: 0 0 10px var(--color-primary-pink); /* Added glow to the petal */
+}
+
+/* --- 7. MEDIA QUERIES --- */
+@media (max-width: 768px) {
+  main {
+      padding: var(--spacing-large) 1rem;
+  }
+  .projects-container {
+      grid-template-columns: 1fr;
+  }
+  .contact-form {
+      grid-template-columns: 1fr;
+  }
+}
