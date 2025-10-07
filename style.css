@@ -1,5 +1,5 @@
 /* ------------------------------------------- */
-/* PROFESSIONAL & COMPLEX CSS STYLES v6 - PINK & DARK MODE */
+/* PROFESSIONAL & COMPLEX CSS STYLES v7 (Final Orbit Fix) - PINK & DARK MODE */
 /* ------------------------------------------- */
 
 /* --- 0. CSS VARIABLES (High Contrast Dark/Pink Theme) --- */
@@ -24,13 +24,16 @@
   --border-radius: 12px;
   --shadow-deep: 0 5px 15px rgba(255, 105, 180, 0.2); 
   --nav-height: 70px;
+  
+  /* NEW VARIABLE for smaller, fixed orbit */
+  --fixed-orbit-radius: 90px; /* Tighter radius for the fixed position */
 
-  /* Dynamic Background Colors (Black to Light Pink Gradient) */
+  /* Dynamic Background Colors (Corrected Gradient for JS) */
   --bg-color-1: #000000;  /* Pure Black (Start Color) */
-  --bg-color-2: #380024;  /* Deep Magenta */
   --bg-color-2: #200015;  /* Deep Magenta */
   --bg-color-3: #63083d;  /* Mid Pink/Magenta */
-  --bg-color-3: #961660;  /* Mid Pink/Magenta */
+  --bg-color-4: #c93b8f;  /* Brighter Pink */
+  --bg-color-5: #FFC0CB;  /* Light Pink/Accent Pink (End Color) */
 }
 
 /* --- 1. GLOBAL RESET AND TYPOGRAPHY --- */
@@ -57,6 +60,141 @@ a {
   color: var(--color-primary-pink);
   text-decoration: none;
 }
+
+/* ---------------------------------------------------- */
+/* --- ANIMATION KEYFRAMES (Clockwise Orbit & Float)--- */
+/* ---------------------------------------------------- */
+
+/* Primary rotation for the PARENT orbit element */
+@keyframes clockwiseRotation {
+  to { transform: rotate(360deg); }
+}
+
+/* Counter rotation for the CHILD skill tag to keep text level */
+@keyframes counterClockwiseRotation {
+  to { transform: rotate(-360deg); }
+}
+
+/* Vertical bobbing/floating animation */
+@keyframes skillFloat {
+  0% {
+      transform: translateY(0px) scale(1);
+  }
+  50% {
+      /* Gentle bob and subtle pulse */
+      transform: translateY(10px) scale(1.05);
+  }
+  100% {
+      transform: translateY(0px) scale(1);
+  }
+}
+
+/* Subtle pulsing glow effect for the tag */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--color-primary-pink); }
+    50% { box-shadow: 0 0 12px var(--color-accent-pink); }
+    100% { box-shadow: 0 0 5px var(--color-primary-pink); }
+}
+
+@keyframes backgroundPulse {
+  0% { background-position: 0% 0%, 0% 0%; }
+  100% { background-position: 100% 100%, 0% 0%; }
+}
+
+@keyframes nameJumpIn {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  60% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes blinkCodeCursor {
+  50% { border-right-color: transparent; }
+}
+@keyframes blinkNameCursor {
+  50% { border-right-color: transparent; }
+}
+
+/* --- ORBIT STRUCTURE STYLES (REQUIRED FOR CLOCK ROTATION) --- */
+
+/* 3. Positioning the skills container (The center point) */
+.animated-skills-container {
+  position: absolute; 
+  top: 40%;
+  left: 25%;
+  /* Center it precisely */
+  transform: translate(-50%, -50%);
+  
+  width: 600px; /* Adjust this width based on screen size */
+  max-width: vw;
+  height: 600px; /* Adjust this height based on screen size */
+  max-height: 90vh;
+  pointer-events: none; 
+  z-index: 50; 
+  transition: all 0.s ease-in-out; 
+}
+
+/* New class to make the orbit follow the fixed name. */
+/* You need to apply this class via JavaScript when the name gets the 'name-fixed' class. */
+.animated-skills-container.orbit-follow-name {
+    /* Switch to fixed positioning relative to the viewport */
+    position: fixed; 
+    /* The container is 600px wide/high. To center it on the fixed name (20px left, 15px top), 
+       we set its top-left corner by subtracting half its size (300px) from the target center point. */
+    top: calc(var(--nav-height) + 15px - 300px); /* Target Center Y - 300px (half height) */
+    left: calc(20px - 300px); /* Target Center X - 300px (half width) */
+}
+
+/* 4. The rotating wrapper for each skill tag (The orbit path) */
+.skill-orbit {
+  position: absolute; 
+  width: 0; 
+  height: 0; 
+  top: 50%; /* Center the orbit itself within the container */
+  left: 50%;
+}
+
+.skill-orbit.floating {
+  /* Starts the continuous COUNTER-CLOCKWISE rotation (New Direction) */
+  animation: counterClockwiseRotation 35s linear infinite; 
+}
+
+/* 5. The skill tag itself - Now with three continuous animations */
+.animated-skill-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* Base positioning: Push the tag out along the X-axis (radius) 
+     Uses --orbit-radius (JS set for large orbit) by default: */
+  transform: translateX(var(--orbit-radius, 250px)); 
+
+  /* Multiple animations: rotation, float, and pulse */
+  animation: 
+      clockwiseRotation 35s linear infinite, /* Keeps text upright against the parent's counter-clockwise rotation */
+      skillFloat 5s ease-in-out infinite alternate, /* Adds vertical bobbing */
+      pulseGlow 3s ease-in-out infinite alternate; /* Adds gentle glow pulse */
+  
+  /* --- Existing tag styling --- */
+  font-family: var(--font-code);
+  background-color: var(--color-code-bg);
+  color: var(--color-accent-pink);
+  padding: 8px 15px;
+  border-radius: 9999px; /* Rounded pill shape */
+  font-size: 0.9em;
+  opacity: 0;
+  white-space: nowrap;
+  border: 1px solid var(--color-primary-pink);
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+  
+  /* Transition for initial appearance only */
+  transition: opacity 0.4s ease-out;
+}
+
+/* Adjust the orbit radius for tags when the container is fixed (smaller orbit) */
+.animated-skills-container.orbit-follow-name .animated-skill-tag {
+    transform: translateX(var(--fixed-orbit-radius));
+}
+
 
 /* --- START OVERLAY STYLING --- */
 #start-overlay {
@@ -86,6 +224,7 @@ a {
   letter-spacing: 2px;
   font-weight: 600;
 }
+
 
 /* --- 2. OVERLAY NAVIGATION (Dark/Fixed) --- */
 .overlay-navigation {
@@ -166,14 +305,9 @@ a {
 
 }
 
-@keyframes backgroundPulse {
-  0% { background-position: 0% 0%, 0% 0%; }
-  100% { background-position: 100% 100%, 0% 0%; }
-}
-
 .hero-name {
   font-family: var(--font-code); 
-  font-size: clamp(2em, 7vw, 4em);
+  font-size: 40px;
   color: var(--color-primary-pink); /* Code is pink */
   position: relative; 
   z-index: 100; 
@@ -190,22 +324,17 @@ a {
 }
 
 /* --- TWO-STAGE GREETING CLASSES --- */
-/* Typing cursor for the code */
 .hero-name.typing-code {
   font-family: var(--font-code);
   border-right-color: var(--color-primary-pink);
-}
-@keyframes blinkCodeCursor {
-  50% { border-right-color: transparent; }
 }
 .hero-name.finished-typing-code {
   animation: blinkCodeCursor 0.75s step-end infinite;
 }
 
-/* Animations for "Esmeralda" jumping in */
 .hero-name.name-reveal {
   font-family: var(--font-heading); 
-  font-size: clamp(3em, 10vw, 6em); 
+  font-size: 60px; 
   color: var(--color-accent-pink); 
   animation: nameJumpIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; 
   border-right-color: transparent; 
@@ -213,25 +342,15 @@ a {
   text-shadow: 0 0 10px var(--color-primary-pink);
 }
 
-@keyframes nameJumpIn {
-  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-  60% { transform: translateY(-20px) scale(1.1); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-/* Typing cursor for the final name */
 .hero-name.finished-typing-name {
   border-right-color: var(--color-primary-pink); 
   animation: blinkNameCursor 0.75s step-end infinite;
 }
-@keyframes blinkNameCursor {
-  50% { border-right-color: transparent; }
-}
 
-/* *** NEW CLASS: Name is fixed in place after all animations complete *** */
+/* Name is fixed in place after all animations complete */
 .hero-name.name-fixed {
   position: fixed; /* Fixes it relative to the viewport */
-  top: 15px;
+  top: calc(var(--nav-height) + 15px); /* Position below the navigation bar, plus a small gap */
   left: 20px;
   font-size: 1.8em; /* Smaller size */
   color: var(--color-primary-pink);
@@ -243,63 +362,6 @@ a {
   transition: all 0.5s ease-in-out; 
 }
 
-
-
-.animated-skills-container {
-  position: absolute; 
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none; 
-  z-index: 50; 
-}
-
-/* Individual skill tag within the animation */
-.animated-skill-tag {
-  position: absolute;
-  font-family: var(--font-code);
-  background-color: var(--color-code-bg);
-  color: var(--color-accent-pink);
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9em;
-  opacity: 0; /* Initially hidden, revealed by JS */
-  transform: translate(-50%, -50%) scale(0.8);
-  white-space: nowrap;
-  border: 1px solid var(--color-primary-pink);
-  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-  /* This transition is used for the *initial* placement from center to circle */
-  transition: opacity 0.4s ease-out, left 0.8s ease-out, top 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* 1. Slow, circular float and slight scale variation */
-@keyframes circularFloat {
-  0% { transform: rotate(0deg) translateY(0px) scale(1); }
-  25% { transform: rotate(1deg) translateY(-8px) scale(1.02); }
-  50% { transform: rotate(-1deg) translateY(0px) scale(1); }
-  75% { transform: rotate(1deg) translateY(8px) scale(1.02); }
-  100% { transform: rotate(0deg) translateY(0px) scale(1); }
-}
-
-/* 2. Subtle pulsing glow effect */
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 5px var(--color-primary-pink); }
-    50% { box-shadow: 0 0 12px var(--color-accent-pink); }
-    100% { box-shadow: 0 0 5px var(--color-primary-pink); }
-}
-
-/* --- CLASS APPLIED BY JAVASCRIPT TO START CONTINUOUS ANIMATION --- */
-.animated-skill-tag.floating {
-  /* Overrides the transform from the initial placement transition */
-  transform: scale(1) !important; 
-  animation: 
-    circularFloat 8s ease-in-out infinite alternate, /* Slow floating movement */
-    pulseGlow 3s ease-in-out infinite alternate; /* Subtle, slow glow pulse */
-}
-
-
 .hero-scroll-prompt {
   position: absolute;
   bottom: var(--spacing-medium);
@@ -308,6 +370,7 @@ a {
   opacity: 0; 
   animation: bounce 2s infinite, fadeIn 1s forwards 2s; 
 }
+
 
 /* --- 4. MAIN CONTENT LAYOUT (Single Column) --- */
 main {
@@ -337,7 +400,6 @@ main {
   align-self: start;
   padding: var(--spacing-medium);
   border-radius: var(--border-radius);
-  /* Added a softer look to the sidebar background */
   background-color: var(--color-background-light); 
   border: 1px solid var(--color-code-bg);
   box-shadow: var(--shadow-deep);
@@ -361,12 +423,12 @@ main {
 /* Full Width Section Styling (Minimalist Boxes) */
 .full-width-section {
   padding: var(--spacing-large) 0;
-  margin-bottom: 0; /* Remove space between sections */
-  border-bottom: 1px solid var(--color-code-bg); /* Subtle separator */
+  margin-bottom: 0; 
+  border-bottom: 1px solid var(--color-code-bg); 
   opacity: 0;
-  pointer-events: none; /* Prevents interaction when hidden */
+  pointer-events: none; 
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  transform: translateY(20px); /* Small offset for a better reveal effect */
+  transform: translateY(20px); 
 }
 
 .full-width-section.active-scroll {
@@ -467,7 +529,7 @@ h2::after {
 
 .project-card {
   border: 1px solid var(--color-code-bg);
-  border-left: 5px solid var(--color-primary-pink); /* Highlight border */
+  border-left: 5px solid var(--color-primary-pink); 
   border-radius: 5px;
   padding: 20px;
   background-color: var(--color-background-light);
@@ -542,7 +604,7 @@ footer {
   z-index: 9999; 
   transition: opacity 1.5s ease-out, transform 1.5s ease-out;
   transform: translateY(0) rotate(0);
-  box-shadow: 0 0 10px var(--color-primary-pink); /* Added glow to the petal */
+  box-shadow: 0 0 10px var(--color-primary-pink); 
 }
 
 /* --- 7. MEDIA QUERIES --- */
@@ -555,5 +617,12 @@ footer {
   }
   .contact-form {
       grid-template-columns: 1fr;
+  }
+  .main-layout-container {
+      grid-template-columns: 1fr; /* Stack sidebar and content */
+  }
+  .sidebar {
+      position: relative; /* Remove sticky on mobile */
+      top: 0;
   }
 }

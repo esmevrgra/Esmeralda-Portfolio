@@ -4,7 +4,7 @@
 // -------------------------------------------
 
 // --- Configuration & Global Elements ---
-const initialCodeText = "print('Hello World');";
+const initialCodeText = "print('Hello World')";
 const typingSpeedCode = 70; 
 const typingSpeedName = 100; 
 const delayAfterCodeTyping = 500; 
