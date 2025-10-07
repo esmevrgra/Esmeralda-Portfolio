@@ -40,7 +40,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.2s ease-out; 
   scroll-behavior: smooth;
 }
 
@@ -181,11 +181,11 @@ a {
   padding: 10px 20px;
   background-color: rgba(26, 26, 26, 0.8); /* Dark background for readability */
   border-radius: var(--border-radius);
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); /* Pink glow */
+  box-shadow: 0 0 15px rgba(227, 118, 173, 0.4); 
   white-space: nowrap; 
   overflow: hidden; 
   border-right: 4px solid var(--color-text-dark); 
-  transition: all 0.2s ease-out; 
+  transition: all 0.5s ease-out; 
   transform: translateY(0) scale(1);
 }
 
@@ -210,7 +210,6 @@ a {
   animation: nameJumpIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; 
   border-right-color: transparent; 
   background-color: rgba(26, 26, 26, 0.95);
-  /* Add a large text shadow for "glow" effect */
   text-shadow: 0 0 10px var(--color-primary-pink);
 }
 
@@ -228,6 +227,22 @@ a {
 @keyframes blinkNameCursor {
   50% { border-right-color: transparent; }
 }
+
+/* *** NEW CLASS: Name is fixed in place after all animations complete *** */
+.hero-name.name-fixed {
+  position: fixed; /* Fixes it relative to the viewport */
+  top: 15px;
+  left: 20px;
+  font-size: 1.8em; /* Smaller size */
+  color: var(--color-primary-pink);
+  box-shadow: none; /* Remove heavy shadow */
+  background-color: transparent; /* No background */
+  padding: 0;
+  margin: 0;
+  transform: none;
+  transition: all 0.5s ease-in-out; 
+}
+
 
 
 .animated-skills-container {
@@ -301,6 +316,47 @@ main {
   padding: var(--spacing-large) var(--spacing-medium);
   padding-top: var(--nav-height); 
 }
+.main-layout-container {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Fixed sidebar, flexible content */
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding: var(--spacing-large) var(--spacing-medium);
+  padding-top: var(--nav-height); 
+  gap: var(--spacing-large);
+}
+
+.content-area {
+  padding-left: var(--spacing-medium); /* Space between sidebar and content */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 20px); /* Sticks below the navigation bar */
+  align-self: start;
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius);
+  /* Added a softer look to the sidebar background */
+  background-color: var(--color-background-light); 
+  border: 1px solid var(--color-code-bg);
+  box-shadow: var(--shadow-deep);
+}
+
+.profile-section {
+  text-align: center;
+}
+
+.scroll-reveal-target.active-scroll {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.flower-bed {
+  padding-right: 0; 
+}
+
 
 /* Full Width Section Styling (Minimalist Boxes) */
 .full-width-section {
@@ -349,27 +405,21 @@ h2::after {
   text-align: center;
 }
 .profile-photo {
-  /* Increased size for better presence */
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  /* Thicker border using accent color */
   border: 4px solid var(--color-accent-pink);
   margin-bottom: 10px;
-  /* Default to full grayscale for a sleek, code-themed look */
   filter: grayscale(100%); 
-  /* Added soft glow effect */
   box-shadow: 0 0 15px rgba(255, 192, 203, 0.6), 
               0 0 5px rgba(255, 192, 203, 0.8) inset;
   transition: filter 0.5s ease-out, transform 0.3s ease-out, box-shadow 0.5s ease-out;
 }
 
 .profile-photo:hover {
-  /* Remove grayscale and slightly scale up on hover */
   filter: grayscale(0%);
   transform: scale(1.05);
-  /* Enhance glow on hover */
   box-shadow: 0 0 25px var(--color-primary-pink), 
               0 0 10px var(--color-primary-pink) inset;
 }
