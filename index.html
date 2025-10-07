@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esmeralda's Growing Garden of Code 🌸</title>
+    <title>Esmeralda's CS Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- START OVERLAY: REQUIRED FOR BROWSER AUDIO PERMISSIONS -->
     <div id="start-overlay">
-        <button id="start-button">Enter Esmeralda's Garden</button>
+        <button id="start-button">Enter Esmeralda's Portfolio</button>
     </div>
 
+    <!-- AUDIO ELEMENT: Placeholder for sound file -->
+    <!-- NOTE: You will need to provide the 'enter_key_sound.mp3' file for this to work. -->
     <audio id="enterSound" src="enter_key_sound.mp3" preload="auto"></audio> 
     
+    <!-- HEADER AND NAVIGATION (FLOATING OVERLAY) -->
     <nav class="overlay-navigation">
         <span class="logo">E. CODE</span>
         <ul>
@@ -25,34 +29,41 @@
         </ul>
     </nav>
 
+    <!-- HERO SECTION: The Dramatic Intro -->
     <section class="hero-intro" id="hero">
+        <!-- Name remains visible and fixed after animation -->
         <h1 class="hero-name" data-final-name="Hello I am Esmeralda!"></h1> 
         <div class="animated-skills-container"></div>
         <p class="hero-scroll-prompt">Scroll to explore my garden <span class="arrow-down">↓</span></p>
     </section>
 
-    <main>
+    <!-- MAIN CONTENT AREA: Now uses a two-column layout for desktop -->
+    <main class="main-layout-container">
         
-        <aside class="sidebar flower-bed">
-            <img src="placeholder_profile.jpg" alt="Esmeralda's Profile Picture" class="profile-photo">
+        <!-- SIDEBAR: Profile/Summary (Fixed Content) -->
+        <aside class="sidebar terminal-box profile-section">
+            <!-- Image path confirmed as IMG_2470.png -->
+            <img src="images/me2.png" onerror="this.onerror=null; this.src='https://placehold.co/120x120/40254A/FFC0CB?text=E';" alt="Esmeralda's Profile Picture" class="profile-photo">
             <h3>Esmeralda</h3>
             <p>CS Student | Web & Data Enthusiast</p>
+            <p>I am a native **English** and **Spanish** speaker, and I am a beginner in **Korean**.</p>
             <div class="contact-links">
                 <a href="mailto:your.email@example.com">Email Me</a>
                 <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                <a href="path/to/your/resume.pdf" download>Download Résumé</a>
             </div>
         </aside>
 
+        <!-- CONTENT AREA: Scrollable Sections (Targets for Scroll Reveal) -->
         <div class="content-area">
 
-            <section id="about" class="flower-bed">
+            <section id="about" class="flower-bed scroll-reveal-target">
                 <h2>About Me: The Roots of the Garden</h2>
                 <p>Hello! My name is Esmeralda, and I am a computer science student passionate about building beautiful and functional digital experiences. My journey begins at the College of Southern Idaho (2023-2025) and will continue at Boise State University (Aug 2025-Present).</p>
                 <p>I find joy in the logic of **C++** and the creative freedom of the **HTML/CSS/JavaScript** stack. I'm currently focused on growing my skills in full-stack development and exploring the world of data with **Python**.</p>
-                <p>I am a native **English** and **Spanish** speaker, and I am a beginner in **Korean**.</p>
             </section>
 
-            <section id="skills" class="flower-bed">
+            <section id="skills" class="flower-bed scroll-reveal-target">
                 <h2>Cultivated Skills & Tools</h2>
                 <ul class="skills-list">
                     <li class="skill-tag">C++</li>
@@ -65,7 +76,7 @@
                 </ul>
             </section>
 
-            <section id="projects" class="flower-bed">
+            <section id="projects" class="flower-bed scroll-reveal-target">
                 <h2>Blooming Projects</h2>
                 <div class="projects-container">
                     
@@ -83,10 +94,10 @@
                         <a href="#" target="_blank" class="project-link">GitHub Repo</a>
                     </article>
 
-                    </div>
+                </div>
             </section>
             
-            <section id="resume" class="flower-bed">
+            <section id="resume" class="flower-bed scroll-reveal-target">
                 <h2>Certificates & Résumé</h2>
                 
                 <div class="resume-content">
@@ -107,7 +118,7 @@
                 </div>
             </section>
 
-            <section id="contact" class="flower-bed">
+            <section id="contact" class="flower-bed scroll-reveal-target">
                 <h2>Let's Cultivate Ideas Together</h2>
                 <p>I'm always open to discussing new projects, internships, or just connecting about code. Feel free to reach out!</p>
                 <form action="submit_form_endpoint" method="POST" class="contact-form">
@@ -120,6 +131,7 @@
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <p>Esmeralda's Garden of Code | Designed with HTML, CSS, and JavaScript.</p>
         <p>&copy; 2024. All rights reserved.</p>

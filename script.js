@@ -107,7 +107,13 @@ function animateSkillsAroundName() {
                 skillTag.style.left = `${targetX - tagRect.width / 2}px`;
                 skillTag.style.top = `${targetY - tagRect.height / 2}px`;
                 skillTag.style.opacity = 1;
-                skillTag.style.transform = `scale(1) rotate(${Math.random() * 20 - 10}deg)`;
+              skillTag.style.transform = `scale(1) rotate(${Math.random() * 20 - 10}deg)`;
+              
+              setTimeout(() => {
+                // *** THIS IS THE CRITICAL STEP TO START THE CSS ANIMATION ***
+                skillTag.classList.add('floating');
+              }, initialTransitionDuration); 
+              
             }, 100 + index * 100); 
         });
         

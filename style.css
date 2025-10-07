@@ -28,9 +28,9 @@
   /* Dynamic Background Colors (Black to Light Pink Gradient) */
   --bg-color-1: #000000;  /* Pure Black (Start Color) */
   --bg-color-2: #380024;  /* Deep Magenta */
+  --bg-color-2: #200015;  /* Deep Magenta */
+  --bg-color-3: #63083d;  /* Mid Pink/Magenta */
   --bg-color-3: #961660;  /* Mid Pink/Magenta */
-  --bg-color-4: #ba3384;  /* Light Pink (Target Color) */
-  --bg-color-5: #ea64b2;  /* End Color */
 }
 
 /* --- 1. GLOBAL RESET AND TYPOGRAPHY --- */
@@ -250,13 +250,40 @@ a {
   padding: 8px 15px;
   border-radius: 20px;
   font-size: 0.9em;
-  opacity: 0; 
+  opacity: 0; /* Initially hidden, revealed by JS */
   transform: translate(-50%, -50%) scale(0.8);
   white-space: nowrap;
   border: 1px solid var(--color-primary-pink);
   box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease-out, left 0.8s ease-out, top 0.8s ease-out;
+  /* This transition is used for the *initial* placement from center to circle */
+  transition: opacity 0.4s ease-out, left 0.8s ease-out, top 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+/* 1. Slow, circular float and slight scale variation */
+@keyframes circularFloat {
+  0% { transform: rotate(0deg) translateY(0px) scale(1); }
+  25% { transform: rotate(1deg) translateY(-8px) scale(1.02); }
+  50% { transform: rotate(-1deg) translateY(0px) scale(1); }
+  75% { transform: rotate(1deg) translateY(8px) scale(1.02); }
+  100% { transform: rotate(0deg) translateY(0px) scale(1); }
+}
+
+/* 2. Subtle pulsing glow effect */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--color-primary-pink); }
+    50% { box-shadow: 0 0 12px var(--color-accent-pink); }
+    100% { box-shadow: 0 0 5px var(--color-primary-pink); }
+}
+
+/* --- CLASS APPLIED BY JAVASCRIPT TO START CONTINUOUS ANIMATION --- */
+.animated-skill-tag.floating {
+  /* Overrides the transform from the initial placement transition */
+  transform: scale(1) !important; 
+  animation: 
+    circularFloat 8s ease-in-out infinite alternate, /* Slow floating movement */
+    pulseGlow 3s ease-in-out infinite alternate; /* Subtle, slow glow pulse */
+}
+
 
 .hero-scroll-prompt {
   position: absolute;
@@ -322,14 +349,32 @@ h2::after {
   text-align: center;
 }
 .profile-photo {
-  width: 100px;
-  height: 100px;
+  /* Increased size for better presence */
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--color-primary-pink);
+  /* Thicker border using accent color */
+  border: 4px solid var(--color-accent-pink);
   margin-bottom: 10px;
-  filter: grayscale(50%); 
+  /* Default to full grayscale for a sleek, code-themed look */
+  filter: grayscale(100%); 
+  /* Added soft glow effect */
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.6), 
+              0 0 5px rgba(255, 192, 203, 0.8) inset;
+  transition: filter 0.5s ease-out, transform 0.3s ease-out, box-shadow 0.5s ease-out;
 }
+
+.profile-photo:hover {
+  /* Remove grayscale and slightly scale up on hover */
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  /* Enhance glow on hover */
+  box-shadow: 0 0 25px var(--color-primary-pink), 
+              0 0 10px var(--color-primary-pink) inset;
+}
+
+
 .contact-links a {
   display: inline-block;
   margin: 10px 15px;
