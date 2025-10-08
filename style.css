@@ -53,9 +53,9 @@
   /* Dynamic Background Colors (Corrected Gradient for JS) */
   --bg-color-1: #11001c; /* Deep Purple */
   --bg-color-2: #220038;
-  --bg-color-3: #400078;
-  --bg-color-4: #6b00b8;
-  --bg-color-5: #9c00ff; /* Bright Purple */
+  --bg-color-3: #5a3b75;
+  --bg-color-4: #24053b;
+  --bg-color-5: #11001c; /* Bright Purple */
   --text-color: #f0f0f0;
   --accent-color: #ff00ff; /* Neon Magenta */
   --font-primary: 'Inter', sans-serif;
@@ -90,7 +90,87 @@ body {
     animation: scrollAnim linear;
     animation-timeline: scroll(nearest block);
   
+}
+
+/* --- STAR FIELD BACKGROUND ANIMATION --- */
+
+/* Positioning the star field container */
+.star-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Crucial to clip the stars */
+  z-index: 1; /* Place behind the name and prompts */
+  perspective: 800px; /* Gives the background depth */
+}
+
+/* Base Star Layer (Smallest, most numerous, slowest) */
+.star-field::before, 
+.star-field::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  /* Use CSS shadows to create the stars */
+  background: transparent;
+  box-shadow: 
+      0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+      /* Add more star shadows here! (The list is long for density) */
+      100vw 100vh #fff, 10vw 50vh #fff, 80vw 20vh #fff, 30vw 90vh #fff, 60vw 40vh #fff, /* example stars */
+      /* ... repeat this pattern, varying the x/y positions to fill the screen */
+      1vw 1vh #fff, 99vw 2vh #fff, 50vw 80vh #fff, 20vw 15vh #fff, 70vw 70vh #fff, 
+      30vw 50vh #fff, 90vw 10vh #fff, 40vw 30vh #fff, 65vw 95vh #fff, 5vw 60vh #fff;
+
+  /* These animations move the star field to simulate scrolling/parallax */
+  animation: stars-move 100s linear infinite;
+}
+/* --- SHOOTING STAR EFFECT --- */
+
+.hero-intro::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 1px;
+  /* Create a glowing, tapered tail */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--color-accent-pink) 50%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 0 10px var(--color-primary-pink);
+
+  /* Start position (off-screen top-right) */
+  top: 0;
+  right: 0;
+  opacity: 0;
   
+  /* Random starting rotation */
+  transform: rotate(45deg);
+
+  /* Animation: It appears, moves across the screen, and disappears */
+  animation: shooting-star 15s linear infinite;
+  animation-delay: 5s; /* Wait 5 seconds before the first star */
+}
+
+
+
+/* Second Star Layer (Medium size, medium speed) */
+.star-field::after {
+  left: 200px; /* Slight offset */
+  top: 200px;
+  box-shadow: 
+      10px 10px #FFC0CB, 80vw 70vh #FFC0CB, 40vw 10vh #FFC0CB, 10vw 80vh #FFC0CB,
+      20vw 50vh #FFC0CB, 75vw 30vh #FFC0CB, 50vw 90vh #FFC0CB, 15vw 5vh #FFC0CB,
+      /* ... repeat this pattern with different x/y positions ... */
+      50vw 50vh #FFC0CB, 25vw 25vh #FFC0CB;
+  animation: stars-move 150s linear infinite; /* Slower than the first layer */
+  transform: scale(1.5); /* Slightly larger */
+}
+
+/* Keyframe for the subtle background star movement */
+@keyframes stars-move {
+  5% { transform: translate(5, 6); }
+  100% { transform: translate(100px, 100px); } /* Gentle diagonal scroll */
 }
 
 a {
@@ -527,41 +607,18 @@ main {
   color: var(--color-text-dark);
 }
 
-h2 {
-  font-family: var(--font-heading);
-  color: var(--color-primary-pink);
-  font-size: 1.8em;
-  font-weight: 700;
-  margin-bottom: var(--spacing-medium);
-  position: relative;
-  padding-bottom: 8px;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 50px; 
-  height: 3px;
-  background-color: var(--color-accent-pink);
-}
 
 /* Profile Section Styling */
 #summary {
   text-align: center;
 }
 .profile-photo {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--color-accent-pink);
+  border: 4px;
   margin-bottom: 10px;
-  filter: grayscale(100%); 
-  box-shadow: 0 0 15px rgba(255, 192, 203, 0.6), 
-              0 0 5px rgba(255, 192, 203, 0.8) inset;
-  transition: filter 0.5s ease-out, transform 0.3s ease-out, box-shadow 0.5s ease-out;
 }
 
 .profile-photo:hover {
@@ -670,6 +727,8 @@ h2::after {
   grid-column: 1 / -1;
   resize: vertical;
 }
+
+
 
 /* --- 5. FOOTER --- */
 footer {
