@@ -26,9 +26,8 @@
     </nav>
 
     <section class="hero-intro" id="hero">
-      <div 
-      class="star-field">
-      </div>
+        <div class="star-field"></div>
+        
         <h1 class="hero-name" data-final-name="Hello World, I am Esmeralda!"></h1> 
         <div class="animated-skills-container"></div>
         <p class="hero-scroll-prompt">Scroll to learn more about me! <span class="arrow-down">↓</span></p>
@@ -55,11 +54,14 @@
             <section id="about" class="flower-bed scroll-reveal-target">
               <br>
                 <h2>Who I Am & Why I Code</h2>
-                <p>Hello! My name is Esmeralda Vergara, and I'm a first-generation Computer Science student at Boise State University. My dedication to the field is built on a strong foundation, having recently earned my Associate of Science in Computer Science from the College of Southern Idaho in May of this year.<br>
-                  <br>
-                  My journey with code started in middle school, quickly blossoming into a love for all things tech. In high school, I explored various creative fields, from graphic design and 3D modeling to video editing, all of which sharpened my technical eye. This background has naturally drawn me to Web Development, where I combine logic with creativity to design and build beautiful, functional user experiences<br>
-                  <br>
-                  I thrive on mastering new technologies and solving complex problems, embracing continuous technical growth. I am also actively expanding my knowledge base by learning more about advanced domains, including Machine Learning and AI, to pursue future specialization. I'm eager to continue learning and building on the skills I love!</p>
+                
+                <div class="terminal-body">
+                    <p>Hello! My name is Esmeralda Vergara, and I'm a first-generation Computer Science student at Boise State University. My dedication to the field is built on a strong foundation, having recently earned my <span class="keyword-highlight">Associate of Science in Computer Science</span> from the College of Southern Idaho in May of this year.<br>
+                      <br>
+                      My journey with code started in middle school, quickly blossoming into a love for <span class="keyword-highlight">all things tech</span>. In high school, I explored various creative fields, from graphic design and 3D modeling to video editing, all of which sharpened my technical eye. This background has naturally drawn me to Web Development, where I combine logic with creativity to design and build <span class="keyword-highlight">beautiful, functional user experiences</span><br>
+                      <br>
+                      I thrive on mastering new technologies and solving complex problems, embracing <span class="keyword-highlight">continuous technical growth</span>. I am also actively expanding my knowledge base by learning more about advanced domains, including Machine Learning and AI, to pursue future specialization. I'm eager to continue learning and building on the skills I love!</p>
+                </div>
             </section>
 
             <section id="skills" class="flower-bed scroll-reveal-target">
@@ -102,52 +104,34 @@
               <br>
                 <h2>Education, Certificates & Resume</h2>
                 <div class="resume-content">
-                  <p>My full résumé and formal credentials are available for download:</p>
-                  <a href="images/EsmeraldaFall2025Resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a>
-          
-                  <h3 class="scroll-reveal-item">Education History</h3>
-                  
-                  <div class="education-entry scroll-reveal-item">
-                      <h4>Boise State University (BSU)</h4>
-                      <p>Computer Science (B.S. track) | Expected Graduation: May 2027</p>
-                  </div>
-                  
-                  <div class="education-entry scroll-reveal-item">
-                      <h4>College of Southern Idaho (CSI)</h4>
-                      <p>**Associate of Science (A.S.) in Computer Science** | Graduated: May 2024</p>
-                  </div>
-          
-                  <h3 class="scroll-reveal-item">Certificates & Credentials</h3>
-                  
-                  <ul class="scroll-reveal-list">
-                      <li class="scroll-reveal-item">**FreeCodeCamp Responsive Web Design** (Completed 2024)</li>
-                      <li class="scroll-reveal-item">**Coursera Introduction to Python** (Completed 2024)</li>
-                  </ul>
-              </div> <br>
-              <br>
-
-                <div class="resume-content">
                     <p>My full résumé and formal credentials are available for download:</p>
-                    <a href="images/EsmeraldaFall2025Resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a> <br>
-                    <br>
-                    <h3>Education</h3>
-                    <ul>
-                        <li>Boise State University (Aug 2025 - Present) - Computer Science (B.S. track)</li>
-                        <li>College of Southern Idaho (2023 - 2025) - Relevant coursework in C++ and Data Structures.</li>
-                    </ul>
+                    <a href="images/EsmeraldaFall2025Resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a>
+            
+                    <h3 class="scroll-reveal-item">Education History</h3>
                     
-                    <h3>Certificates / Licenses</h3>
-                    <ul>
-                        <li>FreeCodeCamp Responsive Web Design (Completed 2024)</li>
-                        <li>Coursera Introduction to Python (Completed 2024)</li>
+                    <div class="education-entry scroll-reveal-item">
+                        <h4>Boise State University (BSU)</h4>
+                        <p>Computer Science (B.S. track) | Expected Graduation: May 2027</p>
+                    </div>
+                    
+                    <div class="education-entry scroll-reveal-item">
+                        <h4>College of Southern Idaho (CSI)</h4>
+                        <p>**Associate of Science (A.S.) in Computer Science** | Graduated: May 2024</p>
+                    </div>
+            
+                    <h3 class="scroll-reveal-item">Certificates & Credentials</h3>
+                    
+                    <ul class="scroll-reveal-list">
+                        <li class="scroll-reveal-item">**FreeCodeCamp Responsive Web Design** (Completed 2024)</li>
+                        <li class="scroll-reveal-item">**Coursera Introduction to Python** (Completed 2024)</li>
                     </ul>
-                </div>
+                </div> 
             </section>
 
             <section id="contact" class="flower-bed scroll-reveal-target">
               <br>
                 <h2>Contact Me!</h2>
-                <p>I'm always open to discussing new projects, internships, or just connecting about code. Feel free to reach out!</p>
+                <p>I'm always open to discussing new projects, internships, or just connecting about code. <br>Feel free to reach out!</p>
                 <form action="submit_form_endpoint" method="POST" class="contact-form">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>

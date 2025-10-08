@@ -92,6 +92,56 @@ body {
   
 }
 
+/* ---------------------------------------------------- */
+/* --- CUSTOM STYLES: ABOUT SECTION (#about)--- */
+/* ---------------------------------------------------- */
+
+
+
+/* 3. Terminal Body/Code Block Styling */
+.terminal-body {
+  position: relative;
+  max-width: 900px; 
+  margin: 3rem auto 0;
+  padding: 2.5rem;
+  border: 1px solid var(--color-code-bg);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background-dark); /* Ensure dark background */
+  box-shadow: 
+      0 0 15px rgba(255, 105, 180, 0.2), 
+      inset 0 0 10px rgba(255, 105, 180, 0.1); 
+  z-index: 2; /* Keep above the glow */
+}
+
+.terminal-body p {
+  font-family: var(--font-code); 
+  color: var(--color-text-dark);
+  line-height: 1.8;
+  z-index: 2; 
+  position: relative;
+  font-size: 1.05em;
+}
+
+/* 4. Interactive Keyword Highlight */
+.keyword-highlight {
+  cursor: pointer;
+  position: relative;
+  color: var(--color-accent-pink); 
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.keyword-highlight:hover {
+  color: var(--color-text-dark); 
+  text-shadow: 
+      0 0 5px var(--color-primary-pink), 
+      0 0 15px var(--color-primary-pink);
+  transform: translateY(-1px);
+}
+
+
+
+
 /* --- STAR FIELD BACKGROUND ANIMATION --- */
 
 /* Positioning the star field container */
