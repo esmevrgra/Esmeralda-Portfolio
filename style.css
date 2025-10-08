@@ -3,6 +3,28 @@
 /* ------------------------------------------- */
 
 /* --- 0. CSS VARIABLES (High Contrast Dark/Pink Theme) --- */
+
+/* === Scroll-linked rotation variables === */
+@property --rotate {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --delayed-rotate {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes scrollAnim {
+	to {
+		--rotate: 1;
+    --delayed-rotate: 1;
+	}
+}
+
+
 :root {
   /* Color Palette */
   --color-primary-pink: #FF69B4;        
@@ -64,6 +86,11 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   transition: background-color 0.8s ease-out;
+  
+    animation: scrollAnim linear;
+    animation-timeline: scroll(nearest block);
+  
+  
 }
 
 a {
@@ -131,24 +158,20 @@ a {
   position: absolute; 
   top: 5%;
   left: 3%;
-  /* Center it precisely */
   transform-style: preserve-3d;
-
   perspective: 1000px; 
-
-  
-  width: 1px; /* Adjust this width based on screen size */
-  max-width: vw;
-  height: 1px; /* Adjust this height based on screen size */
-  max-height: 90vh;
+  width: 1px;
+  height: 1px;
   pointer-events: none; 
   z-index: 50; 
   translate: -50% -50%;
 
-  /* rotate the entire container */
+  /* Add scroll-based rotation */
   transform: rotate(calc(var(--rotate) * 360deg));
-  transition: transform 0.3s ease-out;
+  animation: scrollAnim linear;
+  animation-timeline: scroll(nearest block);
 }
+
 
 /* === Items orbiting around === */
 .skill {

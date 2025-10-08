@@ -8,16 +8,12 @@
 </head>
 <body>
 
-    <!-- START OVERLAY: REQUIRED FOR BROWSER AUDIO PERMISSIONS -->
     <div id="start-overlay">
         <button id="start-button">Enter Esmeralda's Portfolio</button>
     </div>
 
-    <!-- AUDIO ELEMENT: Placeholder for sound file -->
-    <!-- NOTE: You will need to provide the 'enter_key_sound.mp3' file for this to work. -->
     <audio id="enterSound" src="enter_key_sound.mp3" preload="auto"></audio> 
     
-    <!-- HEADER AND NAVIGATION (FLOATING OVERLAY) -->
     <nav class="overlay-navigation">
         <span class="logo">E. CODE</span>
         <ul>
@@ -29,20 +25,15 @@
         </ul>
     </nav>
 
-    <!-- HERO SECTION: The Dramatic Intro -->
     <section class="hero-intro" id="hero">
-        <!-- Name remains visible and fixed after animation -->
         <h1 class="hero-name" data-final-name="Hello World, I am Esmeralda!"></h1> 
         <div class="animated-skills-container"></div>
         <p class="hero-scroll-prompt">Scroll to learn more about me! <span class="arrow-down">↓</span></p>
     </section>
 
-    <!-- MAIN CONTENT AREA: Now uses a two-column layout for desktop -->
     <main class="main-layout-container">
         
-        <!-- SIDEBAR: Profile/Summary (Fixed Content) -->
         <aside class="sidebar terminal-box profile-section">
-            <!-- Image path confirmed as IMG_2470.png -->
             <img src="images/me2.png" onerror="this.onerror=null; this.src='https://placehold.co/120x120/40254A/FFC0CB?text=E';" alt="Esmeralda's Profile Picture" class="profile-photo">
             <h3>Esmeralda Vergara</h3>
             <p>Computer Science Student @ Boise State University </p> <br>
@@ -53,18 +44,19 @@
                 <a href="https://github.com/esmevrgra" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/esmeralda-vergara" target="_blank">LinkedIn</a>
 
-                <a href="path/to/your/resume.pdf" download>Download Resume</a>
-            </div>
+                <a href="images/EsmeraldaFall2025Resume.pdf" download>Download Resume</a> </div>
         </aside>
 
-        <!-- CONTENT AREA: Scrollable Sections (Targets for Scroll Reveal) -->
         <div class="content-area">
 
             <section id="about" class="flower-bed scroll-reveal-target">
               <br>
                 <h2>Who I Am & Why I Code</h2>
-                <p>Hello! My name is Esmeralda, and I am a computer science student passionate about building beautiful and functional digital experiences. My journey begins at the College of Southern Idaho (2023-2025) and will continue at Boise State University (Aug 2025-Present).</p>
-                <p>I find joy in the logic of **C++** and the creative freedom of the **HTML/CSS/JavaScript** stack. I'm currently focused on growing my skills in full-stack development and exploring the world of data with **Python**.</p>
+                <p>Hello! My name is Esmeralda Vergara, and I'm a first-generation Computer Science student at Boise State University. My dedication to the field is built on a strong foundation, having recently earned my Associate of Science in Computer Science from the College of Southern Idaho in May of this year.<br>
+                  <br>
+                  My journey with code started in middle school, quickly blossoming into a love for all things tech. In high school, I explored various creative fields, from graphic design and 3D modeling to video editing, all of which sharpened my technical eye. This background has naturally drawn me to Web Development, where I combine logic with creativity to design and build beautiful, functional user experiences<br>
+                  <br>
+                  I thrive on mastering new technologies and solving complex problems, embracing continuous technical growth. I am also actively expanding my knowledge base by learning more about advanced domains, including Machine Learning and AI, to pursue future specialization. I'm eager to continue learning and building on the skills I love!</p>
             </section>
 
             <section id="skills" class="flower-bed scroll-reveal-target">
@@ -109,18 +101,18 @@
                 
                 <div class="resume-content">
                     <p>My full résumé and formal credentials are available for download:</p>
-                    <a href="path/to/your/resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a>
-
-                    <h3>Key Education</h3>
+                    <a href="images/EsmeraldaFall2025Resume.pdf" class="cta-button" download>Download Full Résumé (PDF)</a> <br>
+                    <br>
+                    <h3>Education</h3>
                     <ul>
-                        <li>**Boise State University** (Aug 2025 - Present) - Computer Science (B.S. track)</li>
-                        <li>**College of Southern Idaho** (2023 - 2025) - Relevant coursework in C++ and Data Structures.</li>
+                        <li>Boise State University (Aug 2025 - Present) - Computer Science (B.S. track)</li>
+                        <li>College of Southern Idaho (2023 - 2025) - Relevant coursework in C++ and Data Structures.</li>
                     </ul>
                     
                     <h3>Certificates / Licenses</h3>
                     <ul>
-                        <li>**FreeCodeCamp Responsive Web Design** (Completed 2024)</li>
-                        <li>**Coursera Introduction to Python** (Completed 2024)</li>
+                        <li>FreeCodeCamp Responsive Web Design (Completed 2024)</li>
+                        <li>Coursera Introduction to Python (Completed 2024)</li>
                     </ul>
                 </div>
             </section>
@@ -139,9 +131,14 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <p>Esmeralda's Computer Science Portfolio | Designed with HTML, CSS, and JavaScript.</p>
+        <div class="contact-links">
+          <a href="mailto:esmeraldavergara@u.boisestate.edu">Email Me</a>
+          <a href="https://github.com/esmevrgra" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/esmeralda-vergara" target="_blank">LinkedIn</a>
+
+          <a href="images/EsmeraldaFall2025Resume.pdf" download>Download Resume</a> </div>
     </footer>
 
     <script src="script.js"></script>
